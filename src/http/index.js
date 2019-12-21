@@ -1,9 +1,9 @@
 // 封装axios请求
 import axios from 'axios'
 import qs from 'qs'
-// import { Loading } from 'element-ui'
+import { Loading } from 'element-ui'
 
-// let loading = null
+let loading = null
 
 
 // 判断当前环境是生产环境还是开发环境
@@ -23,9 +23,9 @@ service.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencod
 
 // 请求拦截器
 service.interceptors.request.use(config => {
-    // loading = Loading.service({
-    //     text: '正在加载中......'
-    // })
+    loading = Loading.service({
+        text: '正在加载中......'
+    })
     let token = localStorage.getItem('adminToken')
         // 每次请求 都在请求头带上token
     if (token) {
@@ -40,9 +40,9 @@ service.interceptors.request.use(config => {
 
 // 响应拦截器
 service.interceptors.response.use(response => {
-    // if (loading) {
-    //     loading.close()
-    // }
+    if (loading) {
+        loading.close()
+    }
     return response.data
 }, err => {
     // if (err.response.status === 401) {

@@ -23,4 +23,7 @@ body {
 .flex{
   display: flex;
 }
+.textcenter{
+  text-align: center;
+}
 </style>
