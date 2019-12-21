@@ -20,5 +20,7 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.flex{
+  display: flex;
+}
 </style>

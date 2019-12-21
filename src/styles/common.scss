@@ -1,0 +1,21 @@
+.el__container {
+    .el-header {
+        background-color: #2e5e85 !important;
+    }
+    .el-menu {
+        // position: fixed !important;
+        height: 92.5vh !important;
+        width: 199px !important;
+    }
+    .el-main {
+        // padding: 0 !important;
+        background-color: #cfd3d6 !important;
+        height: 92.5vh !important;
+    }
+}
+
+.el__form {
+    .el-input {
+        width: 120px !important;
+    }
+}

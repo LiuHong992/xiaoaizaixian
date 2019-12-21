@@ -1,4 +1,4 @@
 export default {
     user: '',
-    phone: 0
+    password: ''
 }
