@@ -2,13 +2,11 @@
   <div>
     <el-card class="box-card">
       <el-table class="el__table" :data="orderData" style="width: 100%;">
-        <el-table-column prop="num" label="Order_No" width="300"></el-table-column>
-        <el-table-column prop="price" label="Price" width="180">
-          <template slot-scope="scope">
-            ￥{{scope.row.price}}
-          </template>
+        <el-table-column prop="num" label="Order_No" width="300" align="center"></el-table-column>
+        <el-table-column prop="price" label="Price" width="180" align="center">
+          <template slot-scope="scope">￥{{scope.row.price}}</template>
         </el-table-column>
-        <el-table-column prop="status" label="Status">
+        <el-table-column prop="status" label="Status" align="center">
           <template slot-scope="scope">
             <el-tag type="danger" v-if="scope.row.status === 0">pendding</el-tag>
             <el-tag type="success" v-if="scope.row.status === 1">success</el-tag>
@@ -45,8 +43,7 @@ export default {
     this.getOrder();
   },
   watch: {},
-  computed: {
-  },
+  computed: {},
   filters: {}
 };
 </script>

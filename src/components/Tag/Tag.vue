@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 标签页 -->
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane :label="sum1" name="first">
         <el-card class="box-card">

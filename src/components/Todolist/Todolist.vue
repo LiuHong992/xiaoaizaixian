@@ -1,8 +1,9 @@
 <template>
   <div>
+    <!-- TodoList -->
     <el-card class="box-card">
       <div class="todoheader">
-        <img src="../assets/images/arrow.png" alt @click="checkAll" :checked="checked" />
+        <img src="..//../assets/images/arrow.png" alt @click="checkAll" :checked="checked" />
         <span>Todo List</span>
       </div>
       <div class="mainbody" v-if="newlist.length>0">
@@ -16,7 +17,7 @@
           <div class="contentleft">
             <div class="flag" @click="checkOne(item)">
               <img
-                src="../assets/images/right.png"
+                src="../../assets/images/right.png"
                 alt
                 width="20px"
                 height="20px"
@@ -27,7 +28,7 @@
             <span>{{item.name}}</span>
           </div>
           <img
-            src="../assets/images/wrong.png"
+            src="../../assets/images/wrong.png"
             alt
             class="wrong"
             v-show="count === index"

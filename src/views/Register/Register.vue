@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Registers from "../../components/Registers";
+import Registers from "../../components/Register/Registers";
 export default {
   data() {
     return {};

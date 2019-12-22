@@ -48,7 +48,7 @@
     </div>
     <!-- 折线图 -->
     <vueLine class="vline"></vueLine>
-    <div class="middle">
+    <div class="middle flex">
       <!-- 雷达图 -->
       <radarChat class="radar"></radarChat>
       <!-- 饼状图 -->
@@ -69,13 +69,13 @@
 
 <script>
 import countTo from "vue-count-to";
-import vueLine from "../../components/Brokenline";
-import radarChat from "../../components/Radarchat";
-import ringChat from "../../components/Ringchat";
-import column from "../../components/Columnar";
-import order from "../../components/Order";
-import todoList from '../../components/Todolist'
-import progresses from '../../components/Progress'
+import vueLine from "../../components/Brokenline/Brokenline";
+import radarChat from "../../components/Radarchat/Radarchat";
+import ringChat from "../../components/Ringchat/Ringchat";
+import column from "../../components/Columnar/Columnar";
+import order from "../../components/Order/Order";
+import todoList from "../../components/Todolist/Todolist";
+import progresses from "../../components/Progress/Progress";
 export default {
   data() {
     return {
@@ -104,7 +104,6 @@ export default {
       ],
       duration: 5000,
       startVal: 0
-      // chatdata: []
     };
   },
   components: {
@@ -176,7 +175,6 @@ export default {
   margin-top: 20px;
 }
 .middle {
-  display: flex;
   justify-content: space-between;
   // background-color: white;
   margin-top: 20px;
@@ -196,11 +194,11 @@ export default {
   .od {
     width: 48%;
   }
-  .todo{
+  .todo {
     width: 24%;
-    margin-left: .8%;
+    margin-left: 0.8%;
   }
-  .pro{
+  .pro {
     width: 24%;
     margin-left: 3.2%;
   }

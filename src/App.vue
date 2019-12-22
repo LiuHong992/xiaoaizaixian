@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-import Backtop from "../src/components/Backtop";
+import Backtop from "../src/components/Backtop/Backtop";
 export default {
   components: {
     Backtop

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 分页+模糊搜索 -->
     <input class="serchipt" type="text" placeholder="请搜索" v-model="keywords" />
     <div class="block">
       <el-table :data="tableData0" style="width: 100%">
@@ -62,6 +63,7 @@ export default {
   },
   components: {},
   methods: {
+    // 获取表格数据
     getTable() {
       this.$axios
         .req("/tableData")
@@ -121,7 +123,12 @@ export default {
       this.currentPage = 1;
       this.tableData = [];
       this.tableData = this.yarr.filter(item => {
-        return JSON.stringify(item).includes(val);
+        return JSON.stringify(
+          item.NAME +
+            item.GOODS_SERIAL_NUMBER +
+            item.ORI_PRICE +
+            item.PRESENT_PRICE
+        ).includes(val);
       });
       //   this.pageChange();
     }

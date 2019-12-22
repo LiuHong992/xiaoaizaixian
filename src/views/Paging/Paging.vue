@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import pagings from "../../components/Pagings";
+import pagings from "../../components/Pagings/Pagings";
 export default {
   data() {
     return {};

@@ -2,10 +2,10 @@
   <div class="wrap">
     <!-- 回到顶部组件 -->
     <slot></slot>
-      <template>
-        <el-backtop target=".wrap" :bottom="100">
-          <div
-            style="{
+    <template>
+      <el-backtop target=".wrap" :bottom="100">
+        <div
+          style="{
         height: 100%;
         width: 100%;
         background-color: #f2f5f6;
@@ -14,10 +14,9 @@
         line-height: 40px;
         color: #1989fa;
       }"
-          >UP</div>
-        </el-backtop>
-      </template>
-
+        >UP</div>
+      </el-backtop>
+    </template>
   </div>
 </template>
 

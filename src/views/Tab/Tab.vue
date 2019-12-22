@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import tags from "../../components/Tag";
+import tags from "../../components/Tag/Tag";
 export default {
   data() {
     return {};

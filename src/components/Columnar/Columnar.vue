@@ -1,7 +1,8 @@
 <template>
   <div>
+    <!-- 柱状图 -->
     <el-card class="box-card">
-      <ve-pie class="vradar" :data="ringData" :settings="chartSettings"></ve-pie>
+      <ve-histogram :data="chartData"></ve-histogram>
     </el-card>
   </div>
 </template>
@@ -10,24 +11,21 @@
 export default {
   data() {
     return {
-      ringData: {
+      chartData: {
         columns: [],
         rows: []
-      },
-      chartSettings: {
-        roseType: "radius"
       }
     };
   },
   components: {},
   methods: {
-    getRing() {
+    getColumn() {
       this.$axios
-        .req("/ringChat")
+        .req("/homeChat")
         .then(res => {
           // console.log(Object.keys(res.data[0]));
-          this.ringData.columns = Object.keys(res.data[0]);
-          this.ringData.rows = res.data;
+          this.chartData.columns = Object.keys(res.data[0]);
+          this.chartData.rows = res.data;
         })
         .catch(err => {
           console.log(err);
@@ -35,7 +33,7 @@ export default {
     }
   },
   mounted() {
-    this.getRing();
+    this.getColumn()
   },
   watch: {},
   computed: {}

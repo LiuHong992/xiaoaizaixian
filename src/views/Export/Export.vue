@@ -2,20 +2,33 @@
   <div>
     <pagings></pagings>
 
-    <download-excel
-      class="export-excel-wrapper"
-      :before-finish="finishDownload"
-      :data="jsondata"
-      :fields="json_fields"
-      name
-    >
-      <el-button type="warning" icon="el-icon-download" circle></el-button>
-    </download-excel>
+    <div class="flex">
+      <download-excel
+        class="export-excel-wrapper"
+        :before-finish="finishDownload"
+        :data="jsondata"
+        :fields="json_fields"
+        name="商品表格.xls"
+        type="xls"
+      >
+        <el-button type="warning" icon="el-icon-download" circle></el-button>
+      </download-excel>
+      <download-excel
+        class="export-excel-wrapper"
+        :before-finish="finishDownload"
+        :data="jsondata"
+        :fields="json_fields"
+        name="商品表格.csv"
+        type="csv"
+      >
+        <el-button type="primary" icon="el-icon-download" circle></el-button>
+      </download-excel>
+    </div>
   </div>
 </template>
 
 <script>
-import pagings from "../../components/Pagings";
+import pagings from "../../components/Pagings/Pagings";
 export default {
   data() {
     return {
@@ -49,15 +62,12 @@ export default {
     pagings
   },
   methods: {
+    // 获取表格数据
     getTable() {
       this.$axios
         .req("/tableData")
         .then(res => {
-          this.jsondata = Array.from(res.data);
-          // this.yarr = res.data;
-          // this.pageChange();
-          // console.log(this.jsondata[0].PRESENT_PRICE);
-          // console.log(this.jsondata[0].PRESENT_PRICE);
+          this.jsondata = res.data;
         })
         .catch(err => {
           console.log(err);
@@ -81,5 +91,6 @@ export default {
 <style scoped lang='scss'>
 .export-excel-wrapper {
   margin-top: 20px;
+  margin-left: 20px;
 }
 </style>

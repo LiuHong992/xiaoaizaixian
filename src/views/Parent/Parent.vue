@@ -118,13 +118,14 @@ export default {
   },
   mounted() {
     this.user = JSON.parse(sessionStorage.getItem("users"));
-    this.hour = this.$dayjs(this.user.data).format("HH");
+    this.hour = this.$dayjs().format("HH");
     // console.log(this.user);
   },
   watch: {},
   computed: {
     formatime() {
-      return this.$dayjs(this.user.data).format("YYYY年MM月DD日HH时mm分ss秒");
+      // setInterval()
+      return this.$dayjs().format("YYYY年MM月DD日HH时mm分ss秒");
     },
     sayHello() {
       if (this.hour > 6 && this.hour < 12) return (this.msg = "早上好");

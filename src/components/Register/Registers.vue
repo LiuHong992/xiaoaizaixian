@@ -1,4 +1,5 @@
 <template>
+<!-- 注册组件 -->
   <div class="registerbx">
     <h3 class="rtitle">欢迎来到小爱后台管理系统</h3>
     <el-form

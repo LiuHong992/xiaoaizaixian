@@ -17,8 +17,22 @@ export default {
   components: {},
   methods: {
     exit() {
-      sessionStorage.removeItem("users");
-      this.$router.push("/login");
+      this.$confirm("即将退出本系统, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          sessionStorage.removeItem("users");
+          this.$router.push("/login");
+          this.$message({
+            type: "success",
+            message: "退出成功!"
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
   mounted() {},

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 雷达图 -->
     <el-card class="box-card">
       <ve-radar :data="radarData"></ve-radar>
     </el-card>

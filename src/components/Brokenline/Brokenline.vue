@@ -1,7 +1,8 @@
 <template>
   <div>
+    <!-- 折线图 -->
     <el-card class="box-card">
-      <ve-histogram :data="chartData"></ve-histogram>
+      <ve-line class="vline" :data="chatdata"></ve-line>
     </el-card>
   </div>
 </template>
@@ -10,21 +11,22 @@
 export default {
   data() {
     return {
-      chartData: {
-        columns: [],
+      chatdata: {
+        columns: ["date", "expected", "actual"],
         rows: []
       }
     };
   },
   components: {},
   methods: {
-    getColumn() {
+    getChat() {
       this.$axios
         .req("/homeChat")
         .then(res => {
-          // console.log(Object.keys(res.data[0]));
-          this.chartData.columns = Object.keys(res.data[0]);
-          this.chartData.rows = res.data;
+          // console.log(this.chatdata);
+          res.data.map(item => {
+            this.chatdata.rows.push(item);
+          });
         })
         .catch(err => {
           console.log(err);
@@ -32,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    this.getColumn()
+    this.getChat();
   },
   watch: {},
   computed: {}
@@ -40,4 +42,5 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+
 </style>
