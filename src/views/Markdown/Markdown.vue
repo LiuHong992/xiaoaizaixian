@@ -1,12 +1,15 @@
 <template>
   <div>
+    <!-- 发布文章 -->
     <div v-if="this.num === 1">
+      <!-- 头部（查看+发布按钮） -->
       <div class="markheader">
         <div>
           <el-button @click="look" type="danger" size="mini">查看</el-button>
           <el-button @click=" submitForm('ruleForm')" type="primary" size="mini">发布</el-button>
         </div>
       </div>
+      <!--  -->
       <el-form
         :model="ruleForm"
         :rules="rules"
@@ -20,6 +23,7 @@
         <el-form-item label="文章摘要" prop="articleabstract">
           <el-input v-model="ruleForm.articleabstract"></el-input>
         </el-form-item>
+        <!-- 作者+类目+来源+重要性+发布时间 -->
         <div class="articlecont">
           <el-form-item label="作者" prop="author">
             <el-input v-model="ruleForm.author"></el-input>
@@ -62,8 +66,10 @@
           ></el-date-picker>
         </div>
       </el-form>
+      <!-- Markdown编辑器组件 -->
       <mavon-editor class="mavons" v-model="value" placeholder="请开始你的表演..." />
     </div>
+    <!-- 查看文章 -->
     <div v-else>
       <div class="markheader">
         <div class="backbox">
@@ -86,9 +92,11 @@
 
 <script>
 export default {
+  // 定义一个name来使用keep-alive保持填写的内容在跳转路由时不会被清空
+  name: "markdown",
   data() {
-    let _this = this;
     return {
+      // 表单需要验证的项
       ruleForm: {
         articletitle: "",
         articleabstract: "",
@@ -98,6 +106,7 @@ export default {
         important: "",
         times: ""
       },
+      // 表单验证规则
       rules: {
         articletitle: [
           {
@@ -141,28 +150,29 @@ export default {
         category: [
           {
             required: true,
-            message:'请至少选择一个类目',
+            message: "请至少选择一个类目",
             trigger: "change"
           }
         ],
         source: [
           {
             required: true,
-            message:'请至少选择一个来源',
+            message: "请至少选择一个来源",
             trigger: "change"
           }
         ],
         important: [
           {
             required: true,
-            message:'请选择该文章的重要性',
+            message: "请选择该文章的重要性",
             trigger: "change"
           }
         ]
       },
+      // 饿了么时间组件的验证规则
       pickerOptions: {
+        // 该方法作用是为了不能选择未来时间
         disabledDate(time) {
-          // console.log(_this.$dayjs(time).format('HH-mm-ss'));
           return time.getTime() > Date.now();
         },
         shortcuts: [
@@ -190,18 +200,22 @@ export default {
           }
         ]
       },
+      // 编辑器输入的数据
       value: "",
+      // 定义的第三方变量，作用是为了让页面显示的是编辑页面还是浏览页面
       num: 1
     };
   },
   components: {},
   methods: {
+    // look和backToedit是实现页面显示切换的方法
     look() {
       this.num = 2;
     },
     backToedit() {
       this.num = 1;
     },
+    // 发布文章
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
@@ -219,10 +233,12 @@ export default {
             .then(res => {
               if (res.code === 200) {
                 this.$message({
-                  message: '发布成功',
+                  message: "发布成功",
                   type: "success"
                 });
                 this.$router.push("/alreadypublished");
+                this.$refs[formName].resetFields();
+                (this.value = ""), (this.ruleForm.times = "");
               } else {
                 this.$message({
                   message: res.message._message,
@@ -242,6 +258,7 @@ export default {
   },
   mounted() {},
   watch: {
+    // 该监听的作用是精确选择的时间在选择此刻必须在此时
     "ruleForm.times": {
       handler(val) {
         if (val > new Date()) {
@@ -271,7 +288,7 @@ export default {
     width: 122px;
     margin-right: 10px;
   }
-  .backbox{
+  .backbox {
     width: 56px;
   }
 }

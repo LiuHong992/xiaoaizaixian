@@ -38,13 +38,6 @@
           </div>
         </div>
       </div>
-      <!-- <el-card class="box-card" v-for="(item,index) in countlist" :key="index" >
-        <div class="text item">
-          <img :src="item.src" alt="">
-          <p>{{item.msg}}</p>
-          <p><countTo :startVal="startVal" :endVal="item.num" :duration="duration"></countTo></p>
-          </div>
-      </el-card>-->
     </div>
     <!-- 折线图 -->
     <vueLine class="vline"></vueLine>
@@ -56,7 +49,7 @@
       <!-- 柱状图 -->
       <column class="col"></column>
     </div>
-    <div class="bottom">
+    <div class="bottom flex">
       <!-- 订单图 -->
       <order class="od"></order>
       <!-- TodoList -->
@@ -79,30 +72,11 @@ import progresses from "../../components/Progress/Progress";
 export default {
   data() {
     return {
+      // 用于接收计数器的对象
       countdata: {},
-      countlist: [
-        {
-          msg: "New Visits",
-          src: "../../assets/images/people.svg",
-          num: 102400
-        },
-        {
-          msg: "Messages",
-          src: "../../assets/images/news.svg",
-          num: 81212
-        },
-        {
-          msg: "Purchases",
-          src: "../../assets/images/money.svg",
-          num: 9280
-        },
-        {
-          msg: "Shoppings",
-          src: "../../assets/images/car.svg",
-          num: 13600
-        }
-      ],
+      // 计数器在5秒内加载完成
       duration: 5000,
+      // 计数器起始值
       startVal: 0
     };
   },
@@ -117,6 +91,7 @@ export default {
     progresses
   },
   methods: {
+    // 获取计数器数据
     getCount() {
       this.$axios
         .req("/homeData")
@@ -150,13 +125,14 @@ export default {
   }
   div {
     justify-content: space-between;
-    width: 305px;
+    width: 300px;
     background-color: white;
-    padding: 10px;
+    padding: 12px;
+    text-align: center;
   }
   .people {
     padding: 0;
-    width: 80px;
+    width: 90px;
     div {
       padding: 0;
       width: 90px;
@@ -170,10 +146,12 @@ export default {
     }
   }
 }
+// 折线图
 .vline {
   width: 100%;
   margin-top: 20px;
 }
+// 雷达图+饼状图 +柱状图
 .middle {
   justify-content: space-between;
   // background-color: white;
@@ -188,8 +166,8 @@ export default {
     width: 33%;
   }
 }
+// 订单+Todolist+进度条
 .bottom {
-  display: flex;
   margin-top: 20px;
   .od {
     width: 48%;

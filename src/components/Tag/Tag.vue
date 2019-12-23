@@ -2,6 +2,7 @@
   <div>
     <!-- 标签页 -->
     <el-tabs v-model="activeName" @tab-click="handleClick">
+      <!-- 未读消息 -->
       <el-tab-pane :label="sum1" name="first">
         <el-card class="box-card">
           <div class="md" v-for="(item,index) in arr1" :key="index">
@@ -46,7 +47,9 @@
 export default {
   data() {
     return {
+      // 默认显示未读消息
       activeName: "first",
+      // 未读消息数组
       arr1: [
         {
           msg: "【系统提示】该系统将于今晚凌晨2点到5点进行升级维护啊",
@@ -57,12 +60,14 @@ export default {
           times: "2019-12-20 18:00:00"
         }
       ],
+      // 已读消息数组
       arr2: [
         {
           msg: "【系统提示】该系统将于今晚凌晨2点到5点进行升级维护",
           times: "2019-12-20 20:00:00"
         }
       ],
+      // 回收站数组
       arr3: [
         {
           msg: "【系统提示】您的优惠券已经过期",
@@ -73,6 +78,7 @@ export default {
   },
   components: {},
   methods: {
+    // 标签页默认方法
     handleClick(tab, event) {
       // console.log(tab, event);
     },
@@ -113,6 +119,7 @@ export default {
   mounted() {},
   watch: {},
   computed: {
+    // 根据未读消息（已读/回收站）的数组长度来对头部数据进行改变
     sum1() {
       return `未读消息(${this.arr1.length})`;
     },

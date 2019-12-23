@@ -33,20 +33,27 @@
         <i class="el-icon-chat-dot-round"></i>
       </div>
     </div>
-    <div class="pie flex">
-      <!-- 按类目进行划分的饼状图 -->
+    <!-- 图表的显示页面 -->
+    <div v-if="this.articlet.length > 0">
+      <div class="pie flex">
+        <!-- 按类目进行划分的饼状图 -->
+        <el-card class="pie-item">
+          <ve-pie :data="categories"></ve-pie>
+        </el-card>
+        <!-- 按来源进行划分的饼状图 -->
+        <el-card class="pie-item">
+          <ve-pie :data="sources" :settings="chartSettings"></ve-pie>
+        </el-card>
+      </div>
+      <!-- 按发布日期进行划分的瀑布图 -->
       <el-card class="pie-item">
-        <ve-pie :data="categories"></ve-pie>
-      </el-card>
-      <!-- 按来源进行划分的饼状图 -->
-      <el-card class="pie-item">
-        <ve-pie :data="sources" :settings="chartSettings"></ve-pie>
+        <ve-waterfall :data="waterfall"></ve-waterfall>
       </el-card>
     </div>
-    <!-- 按发布日期进行划分的瀑布图 -->
-    <el-card class="pie-item">
-      <ve-waterfall :data="waterfall"></ve-waterfall>
-    </el-card>
+    <!-- 无文章数据显示页面 -->
+    <div v-else>
+      <el-card class="pie-item">暂无图表数据</el-card>
+    </div>
   </div>
 </template>
 
@@ -54,6 +61,7 @@
 export default {
   data() {
     return {
+      // 通过接口获取到的相关文章的数据
       articlet: [],
       // 原创文章处数据
       originalarticle: [],

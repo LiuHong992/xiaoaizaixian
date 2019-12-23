@@ -1,5 +1,6 @@
 <template>
   <div class="upload">
+    <!-- 饿了么图片上传组件 -->
     <h3 class="htitle">支持拖拽</h3>
     <p class="ptitle">Element UI自带上传组件</p>
     <el-upload class="upload-demo" drag action="/api/upload" multiple>
@@ -10,6 +11,7 @@
       </div>
       <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
     </el-upload>
+    <!-- vue-image-crop-upload 图片上传组件 -->
     <h3 class="htitle ht">支持裁剪</h3>
      <p class="ptitle">vue-image-crop-upload</p>
     <el-button class="btn" @click="toggleShow" type="warning" icon="el-icon-picture" circle></el-button>
@@ -34,7 +36,9 @@ import myUpload from "vue-image-crop-upload";
 export default {
   data() {
     return {
+      // 第二个图片上传的为一个数组，可以同时传多张图片
       imgDataUrl: [],
+      // 第二个图片上传框的显示状态，默认为false
       show: false,
       size: 2.1
     };
@@ -43,9 +47,11 @@ export default {
     myUpload
   },
   methods: {
+    // vue-image-crop-upload组件的上传图片自带方法（显示上传图片的框）
     toggleShow() {
       this.show = !this.show;
     },
+    // 第二个图片上传组件上传方法
     cropSuccess(imgDataUrl) {
       // console.log("-------- crop success --------", imgDataUrl, field);
       this.imgDataUrl.push(imgDataUrl);
@@ -69,6 +75,7 @@ export default {
 <style scoped lang='scss'>
 .upload {
   width: 95%;
+  min-width: 1200px;
   height: 91.5%;
   padding: 20px;
   background-color: white;

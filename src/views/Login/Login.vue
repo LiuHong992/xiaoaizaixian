@@ -93,6 +93,7 @@ export default {
   },
   components: {},
   methods: {
+    // 跳转注册页面
     registerTo() {
       this.$router.push("/register");
     },
@@ -100,6 +101,7 @@ export default {
     changeCaptcha() {
       this.$refs.captcha.src = "/api/captcha?time=" + Date.now();
     },
+    // 登录后跳转到首页
     goTohomes(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 编辑页面 -->
     <div class="operation flex">
       <el-button @click="backToap" type="danger">返回</el-button>
       <el-button @click="getnewArticle" type="primary">发布</el-button>
@@ -53,6 +54,7 @@
         ></el-date-picker>
       </div>
     </el-form>
+    <!-- Markdown编辑器组件 -->
     <mavon-editor class="mavons" v-model="articles.text" placeholder="请开始你的表演..." />
   </div>
 </template>
@@ -61,7 +63,9 @@
 export default {
   data() {
     return {
+      // 已发布页面传过来的id值
       ide: "",
+      // 饿了么日期时间选择器组件的相关规则
       pickerOptions: {
         disabledDate(time) {
           // console.log(_this.$dayjs(time).format('HH-mm-ss'));
@@ -92,6 +96,7 @@ export default {
           }
         ]
       },
+      // 用来接收获取到的文章的空对象
       articles: {}
     };
   },

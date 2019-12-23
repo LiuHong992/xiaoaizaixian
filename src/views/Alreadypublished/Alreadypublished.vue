@@ -1,7 +1,9 @@
 <template>
   <div>
+    <!-- 如果发布了文章才显示 -->
     <div v-if="this.articles.length > 0">
       <div class="block">
+        <!-- 文章的分页展示数据 -->
         <el-table :data="tableData0" style="width: 100%" border>
           <el-table-column prop="number" type="index" label="#" align="center"></el-table-column>
           <el-table-column prop="title" label="标题" width="300" align="center"></el-table-column>
@@ -59,8 +61,11 @@
 export default {
   data() {
     return {
+      // 从接口处获取到的文章数据
       articles: [],
+      // 分页的最大条数
       pagesize: 10,
+      // 分页当前页数
       currentPage: 1
     };
   },
@@ -133,6 +138,7 @@ export default {
   },
   watch: {},
   computed: {
+    // 文章的分页操作（计算属性）
     tableData0() {
       return this.articles.slice(
         this.pagesize * (this.currentPage - 1),

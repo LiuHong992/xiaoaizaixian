@@ -1,6 +1,7 @@
 <template>
   <div class="comm">
     <el-container class="el__container">
+      <!-- 父路由头部 -->
       <el-header>
         <div class="headers flex" v-if="user">
           <div class="welcome">
@@ -25,7 +26,9 @@
           </div>
         </div>
       </el-header>
+      <!-- 侧边栏+主要内容显示页面 -->
       <el-container>
+        <!-- 侧边栏 -->
         <el-aside width="200px">
           <el-menu
             :default-active="$route.path"
@@ -45,8 +48,11 @@
             </el-menu-item>
           </el-menu>
         </el-aside>
+        <!-- 父路由的显示页面（子路由挂载处） -->
         <el-main>
-          <router-view />
+          <keep-alive include="markdown">
+            <router-view />
+          </keep-alive>
         </el-main>
       </el-container>
     </el-container>
@@ -58,6 +64,7 @@ import { parse } from "path";
 export default {
   data() {
     return {
+      // 循环侧边栏的数组数据
       arr: [
         {
           title: "首页",
@@ -105,35 +112,43 @@ export default {
           path: "/exit"
         }
       ],
+      // 定义的变量来接收从sessionStorage中获取到的users对象
       user: "",
+      // 定义来接收并格式化从登录接口穿过来的时间并进一步进行判断sayHello里面显示的内容
       hour: "",
+      // sayHello里的数据
       msg: ""
     };
   },
   components: {},
   methods: {
+    // 路由跳转
     goTorouter(path) {
       this.$router.push(path);
     }
   },
   mounted() {
+    // 进入首页时将存在sessionStorage中的users对象取出来（注：存值时转换成了JSON字符串，取的时候需要
+    // 用JSON.parse转换回来）
     this.user = JSON.parse(sessionStorage.getItem("users"));
+    // 格式化小时，来判断问好的内容
     this.hour = this.$dayjs().format("HH");
-    // console.log(this.user);
   },
   watch: {},
   computed: {
+    // 格式化时间
     formatime() {
-      // setInterval()
       return this.$dayjs().format("YYYY年MM月DD日HH时mm分ss秒");
     },
+    // 导航栏问候内容
     sayHello() {
       if (this.hour > 6 && this.hour < 12) return (this.msg = "早上好");
       else if (this.hour >= 12 && this.hour < 14) return (this.msg = "中午好");
       else if (this.hour >= 14 && this.hour < 18) return (this.msg = "下午好");
       else if (this.hour >= 18 && this.hour < 24) return (this.msg = "晚上好");
-      else if(this.hour >= 0 && this.hour <= 6) return (this.msg = "该睡觉了哦");
-      else return this.msg = '请先登录'
+      else if (this.hour >= 0 && this.hour <= 6)
+        return (this.msg = "该睡觉了哦");
+      else return (this.msg = "请先登录");
     }
   }
 };
@@ -146,7 +161,8 @@ export default {
 }
 .headers {
   justify-content: space-between;
-  // line-height: 60px;
+  // line-height: 60px
+  min-width: 1200px;
   color: white;
   height: 100%;
   align-items: center;
